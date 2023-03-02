@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  <ul class="flashes">
+     {% for category, message in messages %}
+     {% if category == 'auth-success' %}
+      <div class="message_flash">{{ message }}</div>
+      {% endif %}
+     {% endfor %}
+ </ul>
+ 
+{% endif %}
+{% endwith %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<main class="container">
+    <div class="row">
+        <aside class="col-12 col-mn-6">
+            <h2>Sign In </h2>
+            <br>
+            {% include 'login_form.html' %}
+            <br>
+            <p>Don't have an account? <a href="{{ url_for('auth.signup') }}">Sign Up</a> here!</p>
+        </aside>
+    </div>
+</main>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock content %}

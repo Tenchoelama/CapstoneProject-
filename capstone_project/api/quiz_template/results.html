@@ -1,0 +1,49 @@
+{% extends 'profile.html' %}
+
+{% block content %}
+
+<div class="container-fluid" style="margin-top: 100px; position: relative; z-index: 1;">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+      <div class="text-center">
+        
+        <h2>LOTR Quiz</h2>
+        
+        
+        {% if score == 10 %}
+        <h1>Congratulations! You got all the answers correct!!</h1>
+        {% else %}
+        <h1>You got {{ score }} out of 10 correct!</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="container" style="max-width: 600px; margin: 0 auto; text-align: center;">
+
+  {% for i in range(10) %}
+    <h3 class="fw-bold" style="text-decoration: underline;">Question {{ i+1 }}:</h3>
+    <p>Question: {{ questions[i] }}</p>
+    <p>Your Answer: {{ selected_options[i] }}</p>
+    <p>Correct Answer: {{ correct_answers[i] }}</p>
+    <hr>
+  {% endfor %}
+
+  <div style="text-align: center;">
+    <form method="POST" action="{{ url_for('quiz.save_result') }}">
+      <input type="hidden" name="score" value="{{ score }}">
+      <button type="submit" class="btn btn-primary mt-4">Continue</button>
+    </form>
+    <a href="{{ url_for('quiz.category') }}" class="btn btn-secondary mt-4">Try Again</a>
+  </div>
+
+
+
+
+
+
+
+{% endblock %}

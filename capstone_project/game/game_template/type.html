@@ -1,0 +1,57 @@
+{% extends "profile.html" %}
+
+{% block content %}
+
+
+<div class="container">
+    <br>
+    <br>
+    <h1>Test Typing Speed and Accuracy</h1>
+    <br>
+    <p>Hit Start to begin the timer and enter or submit when you are done! </h3>
+    <br>
+    <br>
+    <h4>{{ words }}</p>
+<hr>
+<form action="{{ url_for('game.type_test') }}" method="POST">
+    <div class="form-group">
+        <label for="user_input">Type here:</label>
+        <input type="text" class="form-control" id="user_input" name="user_input" required>
+        <input type="hidden" name="start_time" id="start_time">
+    </div>
+    <br>
+    <button type="button" class="btn btn-danger" onclick="startTimer()" id="start-btn">Start</button>
+    
+    <button type="submit" class="btn btn-primary" >Submit</button>
+</form>
+{% if time_taken %}
+<hr>
+<h2>Results</h2>
+<p>Time taken: {{ time_taken }} seconds</p>
+<p>Words per minute: {{ wpm }}</p>
+<p>Accuracy: {{ accuracy }}%</p>
+{% endif %}
+
+<script>
+    function startTimer() {
+        var startTime = new Date().getTime();
+        document.getElementById("start_time").value = startTime / 1000;
+        document.getElementById("start-btn").classList.add("disabled");
+        
+    }
+</script>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock %}

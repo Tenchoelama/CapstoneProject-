@@ -1,0 +1,49 @@
+{% extends 'profile.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<div class="container" style="max-width: 600px; margin: 0 auto; text-align: center;">
+  <h1 class="mb-5"> Lord Of The Rings Quiz</h1>
+  
+  <!-- Add container for audio element -->
+  <div class="d-flex justify-content-start align-items-center mb-3">
+    <audio src="../../static/music/lotr.mp3" controls></audio>
+  </div>
+  <form method="POST" action ="{{ url_for('quiz.result')}}">
+    {% for i in range(10) %}
+      <h3 class="fw-bold" style="text-decoration: underline;">Question {{ i+1 }}:</h3>
+      <div class="form-group">
+        <input type="hidden" name="question{{ i+1 }}" value="{{ questions[i] }}">
+      </div>
+      <p class="mb-4" >{{ questions[i] }}</p>
+      {% for j in range(4) %}
+        <div class="form-check mb-2">
+          <label class="form-check-label me-3">{{ options[i][j] }}</label>
+          <input class="form-check-input" type="radio" name="q{{ i+1 }}" value="{{ options[i][j] }}" id="q{{ i+1 }}_{{ j }}" style="margin-right: 10px;">
+        </div>
+		
+      {% endfor %}
+	  <div hidden> 
+		
+	  <input  type="text" name="answer{{ i+1 }}" value="{{ answer[i] }}">
+	</div>
+      <hr>
+    {% endfor %}
+    
+	
+    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+	
+  </form>
+
+</div>
+
+{% endblock %}

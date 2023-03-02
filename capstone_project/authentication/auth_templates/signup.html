@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <ul class="flashes">
+     {% for message in messages %}
+      <div class="message_flash">{{ message }}</div>
+     {% endfor %}
+ </ul>
+{% endif %}
+{% endwith %}
+<br>
+<br>
+
+<main class="container">
+    <div class="row">
+        <aside class="col-12 col-mn-6">
+            <h2>Create Your Free Account</h2>
+            <br>
+            {% include 'forms.html' %}
+        </aside>
+    </div>
+</main>
+<br>
+<br>
+{% endblock content %}
+
